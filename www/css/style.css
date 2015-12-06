@@ -1,0 +1,21 @@
+/* Empty. Add your own CSS if you like */
+
+.grid_item {
+  height: 400px;
+  font-size: 64px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+.grid_ok {
+  background-color: green;
+}
+
+.grid_fail {
+  background-color: red;
+}
+
+.grid_unk {
+  background-color: lightgrey;
+}
