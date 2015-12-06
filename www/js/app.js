@@ -38,7 +38,7 @@ angular.module('starter', ['ionic'])
     function pingWalletProdApp() {
       var logPrefix = "pingWalletProdApp - ";
 
-      pingWalletApp('wallet.moneta.ru','79613378525', '76864')
+      pingWalletApp('','', '')
         .then(function(res) {
           myCtl.statusWalletProd = 1;
 
@@ -55,7 +55,7 @@ angular.module('starter', ['ionic'])
 
     function pingWalletDevApp() {
       var logPrefix = "pingWalletDevApp - ";
-      pingWalletApp('mw-dev-app1.service.local.moneta.ru','79613378525', '52332')
+      pingWalletApp('','', '')
         .then(function(res) {
           myCtl.statusWalletDev = 1;
 
