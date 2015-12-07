@@ -23,9 +23,13 @@ angular.module('starter', ['ionic'])
     var myCtl = this;
     myCtl.statusWalletProd = 0;
     myCtl.statusWalletDev = 0;
+    myCtl.statusMonetaProd = 0;
+    myCtl.statusMonetaDev = 0;
 
-    $interval(pingWalletProdApp, 3000);
-    $interval(pingWalletDevApp, 3000);
+    $interval(pingWalletProdApp2, 1000);
+    $interval(pingWalletDevApp2, 1000);
+    $interval(pingMonetaProdApp, 1000);
+    $interval(pingMonetaDevApp, 1000);
 
     myCtl.LoginRequest = function() {
       this.login = "";
@@ -38,7 +42,7 @@ angular.module('starter', ['ionic'])
     function pingWalletProdApp() {
       var logPrefix = "pingWalletProdApp - ";
 
-      pingWalletApp('','', '')
+      pingWalletApp('wallet.moneta.ru','', '')
         .then(function(res) {
           myCtl.statusWalletProd = 1;
 
@@ -55,7 +59,7 @@ angular.module('starter', ['ionic'])
 
     function pingWalletDevApp() {
       var logPrefix = "pingWalletDevApp - ";
-      pingWalletApp('','', '')
+      pingWalletApp('mw-dev-app1.service.local.moneta.ru','', '')
         .then(function(res) {
           myCtl.statusWalletDev = 1;
 
@@ -64,6 +68,84 @@ angular.module('starter', ['ionic'])
           console.log(logPrefix + 'ERROR: ' + angular.toJson(err));
 
           myCtl.statusWalletDev = 0;
+        })
+        .finally(function() {
+          console.log(logPrefix + 'END');
+        });
+    }
+
+    function pingWalletProdApp2() {
+      var logPrefix = "pingWalletProdApp2 - ";
+
+      pingWalletApp2('wallet.moneta.ru')
+        .then(function(res) {
+          if(res.status === 200 && res.data.indexOf("Manage Console") > -1) {
+            myCtl.statusWalletProd = 1;
+          }
+
+          console.log(logPrefix + 'OK: ' + angular.toJson(res.status));
+        }, function(err) {
+          console.log(logPrefix + 'ERROR: ' + angular.toJson(err));
+
+          myCtl.statusWalletProd = 0;
+        })
+        .finally(function() {
+          console.log(logPrefix + 'END');
+        });
+    }
+
+    function pingWalletDevApp2() {
+      var logPrefix = "pingWalletDevApp2 - ";
+      pingWalletApp2('mw-dev-app1.service.local.moneta.ru')
+        .then(function(res) {
+          if(res.status === 200 && res.data.indexOf("Manage Console") > -1) {
+            myCtl.statusWalletDev = 1;
+          }
+
+          console.log(logPrefix + 'OK: ' + angular.toJson(res.status));
+        }, function(err) {
+          console.log(logPrefix + 'ERROR: ' + angular.toJson(err));
+
+          myCtl.statusWalletDev = 0;
+        })
+        .finally(function() {
+          console.log(logPrefix + 'END');
+        });
+    }
+
+    function pingMonetaProdApp() {
+      var logPrefix = "pingMonetaProdApp - ";
+
+      pingMonetaApp('moneta.ru')
+        .then(function(res) {
+          if(res.status === 200 && res.data.indexOf("login.htm") > -1) {
+            myCtl.statusMonetaProd = 1;
+          }
+
+          console.log(logPrefix + 'OK: ' + angular.toJson(res.status));
+        }, function(err) {
+          console.log(logPrefix + 'ERROR: ' + angular.toJson(err));
+
+          myCtl.statusMonetaProd = 0;
+        })
+        .finally(function() {
+          console.log(logPrefix + 'END');
+        });
+    }
+
+    function pingMonetaDevApp() {
+      var logPrefix = "pingMonetaDevApp - ";
+      pingMonetaApp('demo.moneta.ru')
+        .then(function(res) {
+          if(res.status === 200 && res.data.indexOf("login.htm") > -1) {
+            myCtl.statusMonetaDev = 1;
+          }
+
+          console.log(logPrefix + 'OK: ' + angular.toJson(res.status));
+        }, function(err) {
+          console.log(logPrefix + 'ERROR: ' + angular.toJson(err));
+
+          myCtl.statusMonetaDev = 0;
         })
         .finally(function() {
           console.log(logPrefix + 'END');
@@ -91,6 +173,38 @@ angular.module('starter', ['ionic'])
       .finally(function() {
         console.log(logPrefix + 'END');
       });
+    }
+
+    function pingWalletApp2(domain) {
+      var logPrefix = "pingWalletApp2 - ";
+      console.log(logPrefix + 'BEGIN');
+
+      return $http({
+        method: 'GET',
+        url: 'https://' + domain,
+        headers: {'Content-Type': 'text/html'},
+        timeout: 15 * 1000
+      })
+        .finally(function() {
+          console.log(logPrefix + 'END');
+        });
+    }
+
+    function pingMonetaApp(domain) {
+      var logPrefix = "pingWalletApp - ";
+
+      console.log(logPrefix + 'BEGIN');
+
+      return $http({
+        method: 'GET',
+        url: 'https://' + domain,
+        headers: {'Content-Type': 'text/html'},
+        timeout: 15 * 1000
+
+      })
+        .finally(function() {
+          console.log(logPrefix + 'END');
+        });
     }
   });
 
