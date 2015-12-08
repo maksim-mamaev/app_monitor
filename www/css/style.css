@@ -1,8 +1,9 @@
 /* Empty. Add your own CSS if you like */
 
 .grid_item {
-  height: 470px;
+  height: 530px;
   font-size: 64px;
+color: white;
   text-align: center;
   vertical-align: middle;
   font-weight: bold;
