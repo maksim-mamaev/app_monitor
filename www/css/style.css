@@ -1,12 +1,23 @@
 /* Empty. Add your own CSS if you like */
 
 .grid_item {
-  height: 530px;
+  height: 330px;
   font-size: 64px;
-color: white;
+  color: white;
   text-align: center;
   vertical-align: middle;
   font-weight: bold;
+}
+
+.grid_item_caption {
+  height: 330px;
+  font-size: 64px;
+  color: green;
+  background-color: white;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  text-align: right;
 }
 
 .grid_ok {
