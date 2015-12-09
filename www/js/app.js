@@ -32,16 +32,16 @@ angular.module('starter', ['ionic'])
     myCtl.statusMonetaPayDev = 0;
     myCtl.statusMonetaPayDemo = 0;
 
-    $interval(pingWalletProdApp2, 1000);
-    $interval(pingWalletDemoApp, 1000);
-    $interval(pingWalletDevApp2, 1000);
+    $interval(pingWalletProdApp2, 3000);
+    $interval(pingWalletDemoApp, 3000);
+    $interval(pingWalletDevApp2, 3000);
 
-    $interval(pingMonetaProdApp, 1000);
-    $interval(pingMonetaDevApp, 1000);
+    $interval(pingMonetaProdApp, 3000);
+    $interval(pingMonetaDevApp, 3000);
 
-    $interval(pingMonetaPayProdApp, 1000);
-    $interval(pingMonetaPayDevApp, 1000);
-    $interval(pingMonetaPayDemoApp, 1000);
+    $interval(pingMonetaPayProdApp, 3000);
+    $interval(pingMonetaPayDevApp, 3000);
+    $interval(pingMonetaPayDemoApp, 3000);
 
     //$interval(
     //  function() {
