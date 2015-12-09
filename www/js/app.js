@@ -66,45 +66,45 @@ angular.module('starter', ['ionic'])
     document.addEventListener('deviceready', function () {
     });
 
-    function pingWalletProdApp() {
-      var logPrefix = "pingWalletProdApp - ";
-
-      pingWalletApp('wallet.moneta.ru','', '')
-        .then(function(res) {
-          myCtl.statusWalletProd = 1;
-
-          console.log(logPrefix + 'OK: ' + angular.toJson(res));
-        }, function(err) {
-          console.log(logPrefix + 'ERROR: ' + angular.toJson(err));
-
-          myCtl.statusWalletProd = 0;
-        })
-        .finally(function() {
-          console.log(logPrefix + 'END');
-        });
-    }
-
-    function pingWalletDevApp() {
-      var logPrefix = "pingWalletDevApp - ";
-      pingWalletApp('mw-dev-app1.service.local.moneta.ru','', '')
-        .then(function(res) {
-          myCtl.statusWalletDev = 1;
-
-          console.log(logPrefix + 'OK: ' + angular.toJson(res));
-        }, function(err) {
-          console.log(logPrefix + 'ERROR: ' + angular.toJson(err));
-
-          myCtl.statusWalletDev = 0;
-        })
-        .finally(function() {
-          console.log(logPrefix + 'END');
-        });
-    }
+    //function pingWalletProdApp() {
+    //  var logPrefix = "pingWalletProdApp - ";
+    //
+    //  pingWalletApp('wallet.moneta.ru','', '')
+    //    .then(function(res) {
+    //      myCtl.statusWalletProd = 1;
+    //
+    //      console.log(logPrefix + 'OK: ' + angular.toJson(res));
+    //    }, function(err) {
+    //      console.log(logPrefix + 'ERROR: ' + angular.toJson(err));
+    //
+    //      myCtl.statusWalletProd = 0;
+    //    })
+    //    .finally(function() {
+    //      console.log(logPrefix + 'END');
+    //    });
+    //}
+    //
+    //function pingWalletDevApp() {
+    //  var logPrefix = "pingWalletDevApp - ";
+    //  pingWalletApp('mw-dev-app1.service.local.moneta.ru','', '')
+    //    .then(function(res) {
+    //      myCtl.statusWalletDev = 1;
+    //
+    //      console.log(logPrefix + 'OK: ' + angular.toJson(res));
+    //    }, function(err) {
+    //      console.log(logPrefix + 'ERROR: ' + angular.toJson(err));
+    //
+    //      myCtl.statusWalletDev = 0;
+    //    })
+    //    .finally(function() {
+    //      console.log(logPrefix + 'END');
+    //    });
+    //}
 
     function pingWalletProdApp2() {
       var logPrefix = "pingWalletProdApp2 - ";
 
-      pingWalletApp2('wallet.moneta.ru')
+      pingMonetaApp('wallet.moneta.ru/welcome.htm')
         .then(function(res) {
           if(res.status === 200 && res.data.indexOf("Manage Console") > -1) {
             myCtl.statusWalletProd = 1;
@@ -124,7 +124,7 @@ angular.module('starter', ['ionic'])
     function pingWalletDemoApp() {
       var logPrefix = "pingWalletDemoApp - ";
 
-      pingWalletApp2('demo.wallet.moneta.ru')
+      pingMonetaApp('demo.wallet.moneta.ru/welcome.htm')
         .then(function(res) {
           if(res.status === 200 && res.data.indexOf("Manage Console") > -1) {
             myCtl.statusWalletDemo = 1;
@@ -143,7 +143,7 @@ angular.module('starter', ['ionic'])
 
     function pingWalletDevApp2() {
       var logPrefix = "pingWalletDevApp2 - ";
-      pingWalletApp2('mw-dev-app1.service.local.moneta.ru')
+      pingMonetaApp('mw-dev-app1.service.local.moneta.ru/welcome.htm')
         .then(function(res) {
           if(res.status === 200 && res.data.indexOf("Manage Console") > -1) {
             myCtl.statusWalletDev = 1;
@@ -207,7 +207,7 @@ angular.module('starter', ['ionic'])
       var logPrefix = "pingMonetaPayProdApp - ",
         result = 0;
 
-      return pingMonetaApp('pay.moneta.ru')
+      return pingMonetaApp('pay.moneta.ru/welcome.htm')
         .then(function(res) {
           if(res.status === 200 && res.data.indexOf("Manage Console") > -1) {
             myCtl.statusMonetaPayProd = 1;
@@ -228,7 +228,7 @@ angular.module('starter', ['ionic'])
       var logPrefix = "pingMonetaPayDevApp - ",
         result = 0;
 
-      return pingMonetaApp('mpay-dev-app1.service.local.moneta.ru')
+      return pingMonetaApp('mpay-dev-app1.service.local.moneta.ru/welcome.htm')
         .then(function(res) {
           if(res.status === 200 && res.data.indexOf("Manage Console") > -1) {
             myCtl.statusMonetaPayDev = 1;
@@ -250,7 +250,7 @@ angular.module('starter', ['ionic'])
       var logPrefix = "pingMonetaPayDemoApp - ",
         result = 0;
 
-      return pingMonetaApp('demo.pay.moneta.ru')
+      return pingMonetaApp('demo.pay.moneta.ru/welcome.htm')
         .then(function(res) {
           if(res.status === 200 && res.data.indexOf("Manage Console") > -1) {
             myCtl.statusMonetaPayDemo = 1;
@@ -289,21 +289,6 @@ angular.module('starter', ['ionic'])
       .finally(function() {
         console.log(logPrefix + 'END');
       });
-    }
-
-    function pingWalletApp2(domain) {
-      var logPrefix = "pingWalletApp2 - ";
-      console.log(logPrefix + 'BEGIN');
-
-      return $http({
-        method: 'GET',
-        url: 'https://' + domain,
-        headers: {'Content-Type': 'text/html'},
-        timeout: 15 * 1000
-      })
-        .finally(function() {
-          console.log(logPrefix + 'END');
-        });
     }
 
     function pingMonetaApp(domain) {
