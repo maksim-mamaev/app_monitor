@@ -36,8 +36,8 @@ angular.module('starter', ['ionic'])
     $interval(pingWalletDemoApp, 3000);
     $interval(pingWalletDevApp2, 3000);
 
-    $interval(pingMonetaProdApp, 3000);
-    $interval(pingMonetaDevApp, 3000);
+    $interval(pingMonetaProdApp, 60000);
+    $interval(pingMonetaDevApp, 60000);
 
     $interval(pingMonetaPayProdApp, 3000);
     $interval(pingMonetaPayDevApp, 3000);
@@ -164,9 +164,9 @@ angular.module('starter', ['ionic'])
       var logPrefix = "pingMonetaProdApp - ",
         result = 0;
 
-      return pingMonetaApp('moneta.ru')
+      return pingMonetaApp('moneta.ru/ping.htm')
         .then(function(res) {
-          if(res.status === 200 && res.data.indexOf("login.htm") > -1) {
+          if(res.status === 200 && res.data.indexOf("PONG") > -1) {
             myCtl.statusMonetaProd = 1;
           }
 
@@ -185,9 +185,9 @@ angular.module('starter', ['ionic'])
       var logPrefix = "pingMonetaDevApp - ",
         result = 0;
 
-      return pingMonetaApp('demo.moneta.ru')
+      return pingMonetaApp('demo.moneta.ru/ping.htm')
         .then(function(res) {
-          if(res.status === 200 && res.data.indexOf("login.htm") > -1) {
+          if(res.status === 200 && res.data.indexOf("PONG") > -1) {
             myCtl.statusMonetaDev = 1;
           }
 
