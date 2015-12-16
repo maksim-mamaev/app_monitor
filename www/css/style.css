@@ -11,7 +11,7 @@
 
 .grid_item_caption {
   height: 300px;
-  font-size: 64px;
+  font-size: 80px;
   color: green;
   background-color: white;
   vertical-align: middle;
@@ -27,7 +27,6 @@
   text-align: center;
   vertical-align: middle;
   font-weight: bold;
-  text-decoration: underline;
 }
 
 .grid_ok {
