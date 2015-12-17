@@ -33,7 +33,7 @@ angular.module('starter', ['ionic'])
     myCtl.statusMonetaPayDemo = 0;
 
     $interval(pingWalletProdApp2, 60000);
-    $interval(pingWalletDemoApp, 30000);
+    //$interval(pingWalletDemoApp, 30000);
     $interval(pingWalletDevApp2, 3000);
 
     $interval(pingMonetaProdApp, 60000);
