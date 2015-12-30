@@ -33,7 +33,7 @@ angular.module('starter', ['ionic'])
     myCtl.statusMonetaPayDemo = 0;
 
     $interval(pingWalletProdApp2, 60000);
-    //$interval(pingWalletDemoApp, 30000);
+    $interval(pingWalletDemoApp, 30000);
     $interval(pingWalletDevApp2, 3000);
 
     $interval(pingMonetaProdApp, 60000);
@@ -124,7 +124,8 @@ angular.module('starter', ['ionic'])
     function pingWalletDemoApp() {
       var logPrefix = "pingWalletDemoApp - ";
 
-      pingMonetaApp('demo.wallet.moneta.ru/welcome.htm')
+      //pingMonetaApp('demo.wallet.moneta.ru/welcome.htm')
+      pingMonetaApp('185.111.85.48/welcome.htm', true)
         .then(function(res) {
           if(res.status === 200 && res.data.indexOf("Manage Console") > -1) {
             myCtl.statusWalletDemo = 1;
@@ -291,14 +292,16 @@ angular.module('starter', ['ionic'])
       });
     }
 
-    function pingMonetaApp(domain) {
+    function pingMonetaApp(domain, httpProtocol) {
       var logPrefix = "pingWalletApp - ";
 
       console.log(logPrefix + 'BEGIN');
 
+      var protocol = httpProtocol ? 'http://' : 'https://'
+
       return $http({
         method: 'GET',
-        url: 'https://' + domain,
+        url: protocol + domain,
         headers: {'Content-Type': 'text/html'},
         timeout: 15 * 1000
 
